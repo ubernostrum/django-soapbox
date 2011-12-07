@@ -25,3 +25,8 @@ class MessageTests(TestCase):
         # Should match only the global message.
         results = Message.objects.match('/')
         self.assertEqual(len(results), 1)
+
+    def test_match_none(self):
+        # This should also match only the global message.
+        results = Message.objects.match('/fo/')
+        self.assertEqual(len(results), 1)
