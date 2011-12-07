@@ -1,0 +1,7 @@
+{% load soapbox %}
+
+{% get_messages_for_page request.path as soapbox_messages %}
+
+{% for message in soapbox_messages %}
+{{ message }}
+{% endfor %}
