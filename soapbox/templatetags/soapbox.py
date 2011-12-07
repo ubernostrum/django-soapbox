@@ -1,6 +1,6 @@
 from django import template
 
-from soapbox.models import Message
+from ..models import Message
 
 
 register = template.Library()
@@ -20,8 +20,9 @@ class MessagesForPageNode(template.Node):
         return ''
 
 
+@register.tag
 def get_messages_for_page(parser, token):
     bits = token.split_contents()
     if len(bits) != 4 or bits[2] != 'as':
-        raise template.TemplateSyntaxError("%s syntax must be '{% %s [url] as [varname] %}" % (bits[0], bits[0]))
+        raise template.TemplateSyntaxError("%s syntax must be '%s [url] as [varname]" % (bits[0], bits[0]))
     return MessagesForPageNode(bits[1], bits[3])
