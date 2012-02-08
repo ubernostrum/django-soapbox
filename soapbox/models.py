@@ -1,5 +1,7 @@
 from django.db import models
 
+from django.utils.safestring import mark_safe
+
 
 class MessageManager(models.Manager):
     def active(self):
@@ -23,7 +25,7 @@ class Message(models.Model):
     objects = MessageManager()
 
     def __unicode__(self):
-        return self.message
+        return mark_safe(self.message)
 
     def match(self, url):
         if self.is_global:

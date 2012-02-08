@@ -21,7 +21,7 @@ class TagTests(TestCase):
     def test_success_with_multiple_match(self):
         r = self.client.get('/foo/bar/')
         self.assertEqual(r.status_code, 200)
-        self.assertEqual(len(r.context['soapbox_messages']), 3)
+        self.assertEqual(len(r.context['soapbox_messages']), 4)
         self.assertContains(r, "This is a global message.")
         self.assertContains(r, "This message appears on /foo/ and on /foo/bar/.")
         self.assertContains(r, "This message appears only on /foo/bar/.")
@@ -32,3 +32,7 @@ class TagTests(TestCase):
                           self.client.get,
                           '/fail/')
         
+    def test_html(self):
+        r = self.client.get('/foo/bar/')
+        self.assertEqual(r.status_code, 200)
+        self.assertContains(r, '<a href="/foo/bar/">')

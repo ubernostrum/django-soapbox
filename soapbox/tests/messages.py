@@ -8,7 +8,7 @@ class MessageTests(TestCase):
 
     def test_active(self):
         # Fixture has four active messages.
-        self.assertEqual(Message.objects.active().count(), 4)
+        self.assertEqual(Message.objects.active().count(), 5)
 
     def test_match_simple(self):
         # Should match the global and the '/bar/' messages.
@@ -19,7 +19,7 @@ class MessageTests(TestCase):
         # Should match the global, the '/foo/' and the '/foo/bar/'
         # messages.
         results = Message.objects.match('/foo/bar/')
-        self.assertEqual(len(results), 3)
+        self.assertEqual(len(results), 4)
 
     def test_match_global(self):
         # Should match only the global message.
