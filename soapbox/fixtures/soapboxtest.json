@@ -1,1 +1,66 @@
-[{"pk": 1, "model": "soapbox.message", "fields": {"url": "", "message": "This is a global message.", "is_global": true, "is_active": true}}, {"pk": 2, "model": "soapbox.message", "fields": {"url": "/foo/", "message": "This message appears on /foo/ and on /foo/bar/.", "is_global": false, "is_active": true}}, {"pk": 3, "model": "soapbox.message", "fields": {"url": "/foo/bar/", "message": "This message appears only on /foo/bar/.", "is_global": false, "is_active": true}}, {"pk": 4, "model": "soapbox.message", "fields": {"url": "/bar/", "message": "This message appears only on /bar/.", "is_global": false, "is_active": true}}, {"pk": 5, "model": "soapbox.message", "fields": {"url": "", "message": "This is an inactive global message.", "is_global": true, "is_active": false}}, {"pk": 6, "model": "soapbox.message", "fields": {"url": "/foo/bar/", "message": "This is an inactive message which would, if active, appear on /foo/bar/.", "is_global": false, "is_active": false}}]
+[
+  {"pk": 1,
+   "model": "soapbox.message",
+   "fields": {
+   	     "url": "",
+	     "message": "This is a global message.",
+	     "is_global": true,
+	     "is_active": true
+    }
+  },
+  {"pk": 2,
+   "model": "soapbox.message",
+   "fields": {
+   	     "url": "/foo/",
+	     "message": "This message appears on /foo/ and on /foo/bar/.",
+	     "is_global": false,
+	     "is_active": true
+    }
+  },
+  {"pk": 3,
+   "model":
+   "soapbox.message",
+   "fields": {
+   	     "url": "/foo/bar/",
+	     "message": "This message appears only on /foo/bar/.",
+	     "is_global": false,
+	     "is_active": true
+    }
+  },
+  {"pk": 4,
+   "model": "soapbox.message",
+   "fields": {
+   	     "url": "/bar/",
+	     "message": "This message appears only on /bar/.",
+	     "is_global": false,
+	     "is_active": true
+    }
+  },
+  {"pk": 5,
+   "model": "soapbox.message",
+   "fields": {
+   	     "url": "",
+	     "message": "This is an inactive global message.",
+	     "is_global": true,
+	     "is_active": false
+    }
+  },
+  {"pk": 6,
+   "model": "soapbox.message",
+   "fields": {
+   	     "url": "/foo/bar/",
+	     "message": "This is an inactive message which would, if active, appear on /foo/bar/.",
+	     "is_global": false,
+	     "is_active": false
+    }
+  },
+  {"pk": 7,
+   "model": "soapbox.message",
+   "fields": {
+   	     "url": "/foo/bar/",
+	     "message": "This is a message which appears on <a href=\"/foo/bar/\">/foo/bar/</a> and contains HTML.",
+	     "is_global": false,
+	     "is_active": true
+    }
+  }
+]
