@@ -19,4 +19,8 @@ urlpatterns = patterns('',
      TemplateView.as_view(
          template_name='soapboxtest/test_fail_syntax.html'
      )),
+    (r'^bad-url-var/$',
+     TemplateView.as_view(
+         template_name='soapboxtest/test_bad_variable.html'
+     )),
 )
