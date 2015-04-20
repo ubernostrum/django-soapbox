@@ -1,9 +1,9 @@
+from django import template
 from django.test import TestCase
 
 
 class TagTests(TestCase):
     fixtures = ['soapboxtest.json']
-    urls = 'soapbox.tests.urls'
 
     def test_success_root(self):
         r = self.client.get('/')
@@ -27,7 +27,6 @@ class TagTests(TestCase):
         self.assertContains(r, "This message appears only on /foo/bar/.")
 
     def test_fail_syntax(self):
-        from django import template
         self.assertRaises(template.TemplateSyntaxError,
                           self.client.get,
                           '/fail/')

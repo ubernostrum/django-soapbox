@@ -22,7 +22,19 @@ class MessagesForPageNode(template.Node):
 
 @register.tag
 def get_messages_for_page(parser, token):
+    """
+    Given a URL, return into the context a list of all
+    :model:`soapbox.Message` objects matching that URL.
+
+    Syntax::
+
+        {% get_messages_for_page url as varname %}
+    
+    """
     bits = token.split_contents()
     if len(bits) != 4 or bits[2] != 'as':
-        raise template.TemplateSyntaxError("%s syntax must be '%s [url] as [varname]" % (bits[0], bits[0]))
+        raise template.TemplateSyntaxError(
+            "%s syntax must be '%s [url] as [varname]" % (
+                bits[0], bits[0]
+        ))
     return MessagesForPageNode(bits[1], bits[3])
