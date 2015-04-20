@@ -1,2 +1,2 @@
-from soapbox.tests.messages import *
-from soapbox.tests.tags import *
+from soapbox.tests.messages import MessageTests
+from soapbox.tests.tags import TagTests

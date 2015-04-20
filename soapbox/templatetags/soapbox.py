@@ -29,12 +29,11 @@ def get_messages_for_page(parser, token):
     Syntax::
 
         {% get_messages_for_page url as varname %}
-    
+
     """
     bits = token.split_contents()
     if len(bits) != 4 or bits[2] != 'as':
         raise template.TemplateSyntaxError(
             "%s syntax must be '%s [url] as [varname]" % (
-                bits[0], bits[0]
-        ))
+                bits[0], bits[0]))
     return MessagesForPageNode(bits[1], bits[3])
