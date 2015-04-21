@@ -13,6 +13,9 @@ urlpatterns = patterns(
     url(r'^foo/bar/$',
         TemplateView.as_view(
             template_name='soapboxtest/test_success.html')),
+    url(r'^foo/bar/baz/$',
+        TemplateView.as_view(
+            template_name='soapboxtest/test_context_processor.html')),
     url(r'^fail/$',
         TemplateView.as_view(
             template_name='soapboxtest/test_fail_syntax.html')),

@@ -111,3 +111,37 @@ class MessageTests(TestCase):
         self.assertTrue(2 in result_ids)
         self.assertTrue(3 in result_ids)
         self.assertTrue(7 in result_ids)
+
+
+class ContextProcessorTests(TestCase):
+    """
+    Test the context processor which automatically adds messages to
+    template context.
+
+    """
+    fixtures = ['soapboxtest.json']
+
+    def test_context_processor(self):
+        """
+        Test basic use of the context processor.
+
+        """
+        # Enable the context processor only for this test, since its
+        # context variable name conflicts with the one used by the
+        # template tag in other tests.
+        with self.modify_settings(
+            TEMPLATE_CONTEXT_PROCESSORS={
+                'append': 'soapbox.context_processors.soapbox_messages',
+            }):
+            r = self.client.get('/foo/bar/baz/')
+            self.assertEqual(r.status_code, 200)
+            self.assertTrue('soapbox_messages' in r.context)
+            self.assertEqual(
+                len(r.context['soapbox_messages']), 4)
+            result_ids = [m.id for m in \
+                          r.context['soapbox_messages']]
+            self.assertTrue(1 in result_ids)
+            self.assertTrue(2 in result_ids)
+            self.assertTrue(3 in result_ids)
+            self.assertTrue(7 in result_ids)
+            
