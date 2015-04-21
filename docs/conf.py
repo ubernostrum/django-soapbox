@@ -1,0 +1,18 @@
+extensions = []
+templates_path = ['_templates']
+source_suffix = '.rst'
+master_doc = 'index'
+project = u'django-soapbox'
+copyright = u'2011-2015, James Bennett'
+version = '1.1'
+release = '1.1'
+exclude_trees = ['_build']
+pygments_style = 'sphinx'
+html_static_path = ['_static']
+htmlhelp_basename = 'django-soapboxdoc'
+latex_documents = [
+  ('index', 'django-soapbox.tex', u'django-soapbox Documentation',
+   u'James Bennett', 'manual'),
+]
+html_theme = 'classic'
+
