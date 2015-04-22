@@ -1,3 +1,7 @@
+import os
+
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+
 extensions = []
 templates_path = ['_templates']
 source_suffix = '.rst'
@@ -14,5 +18,8 @@ latex_documents = [
   ('index', 'django-soapbox.tex', u'django-soapbox Documentation',
    u'James Bennett', 'manual'),
 ]
-html_theme = 'classic'
+if not on_rtd:
+    import sphinx_rtd_theme
+    html_theme = 'sphinx_rtd_theme'
+    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
