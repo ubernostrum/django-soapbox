@@ -6,7 +6,7 @@ from setuptools import setup
 setup(name='django-soapbox',
       version='1.1',
       description='Site-wide and page-specific announcements/messages for Django sites',
-      long_description=open(os.path.join(os.path.dirname(__file__), 'README')).read(),
+      long_description=open(os.path.join(os.path.dirname(__file__), 'README.rst')).read(),
       author='James Bennett',
       author_email='james@b-list.org',
       url='https://github.com/ubernostrum/django-soapbox',
