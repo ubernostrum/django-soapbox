@@ -1,9 +1,8 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from django.views.generic import TemplateView
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^$',
         TemplateView.as_view(
             template_name='soapboxtest/test_success.html')),
@@ -22,4 +21,4 @@ urlpatterns = patterns(
     url(r'^bad-url-var/$',
         TemplateView.as_view(
             template_name='soapboxtest/test_bad_variable.html')),
-)
+]
