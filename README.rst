@@ -1,5 +1,8 @@
 .. -*-restructuredtext-*-
 
+.. image:: https://travis-ci.org/ubernostrum/django-soapbox.svg?branch=master
+    :target: https://travis-ci.org/ubernostrum/django-soapbox
+
 django-soapbox provides simple site-wide and page-specific
 announcements/messages for `Django <https://www.djangoproject.com>`_
 sites. Simply install, begin adding messages in the admin, and then
