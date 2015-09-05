@@ -8,5 +8,6 @@ def soapbox_messages(request):
     ``soapbox_messages``.
 
     """
-    messages = Message.objects.match(request.path)
-    return {'soapbox_messages': messages}
+    return {
+        'soapbox_messages': Message.objects.match(request.path)
+    }

@@ -4,6 +4,7 @@ from django.utils.text import Truncator
 from .models import Message
 
 
+@admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
@@ -24,6 +25,3 @@ class MessageAdmin(admin.ModelAdmin):
         return Truncator(obj.message).chars(50, html=True)
     message_display.allow_tags = True
     message_display.short_description = 'Message'
-
-
-admin.site.register(Message, MessageAdmin)

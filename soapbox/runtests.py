@@ -1,9 +1,9 @@
 """
 A standalone test runner script, configuring the minimum settings
-required for django-soapbox's tests to execute.
+required for tests to execute.
 
-Re-use at your own risk: many Django applications will require a more
-extensive list of settings.
+Re-use at your own risk: many Django applications will require
+different settings and/or templates to run their tests.
 
 """
 
@@ -11,20 +11,19 @@ import os
 import sys
 
 
-# Make sure django-soapbox is (at least temporarily) on the import
-# path.
-SOAPBOX_DIR = os.path.abspath(os.path.dirname(__file__))
-sys.path.insert(0, SOAPBOX_DIR)
+# Make sure the app is (at least temporarily) on the import path.
+APP_DIR = os.path.abspath(os.path.dirname(__file__))
+sys.path.insert(0, APP_DIR)
 
 
-# Minimum settings required to test django-soapbox.
+# Minimum settings required for the app's tests.
 SETTINGS_DICT = {
     'INSTALLED_APPS': ('soapbox',),
     'ROOT_URLCONF': 'soapbox.tests.urls',
     'DATABASES': {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(SOAPBOX_DIR, 'db.sqlite3'),
+            'NAME': os.path.join(APP_DIR, 'db.sqlite3'),
         },
     },
     'MIDDLEWARE_CLASSES': (
