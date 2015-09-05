@@ -1,6 +1,13 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.safestring import mark_safe
+
+
+GLOBAL_OR_LOCAL = ("A Message can be global, or can appear on only "
+                   "some pages, but not both.")
+WHERE_REQUIRED = ("A Message must either be global, or specify a "
+                  "URL prefix it will match.")
 
 
 class MessageQuerySet(models.QuerySet):
@@ -65,6 +72,12 @@ class Message(models.Model):
 
     def __str__(self):
         return mark_safe(self.message)
+
+    def clean(self):
+        if self.is_global and self.url is not None:
+            raise ValidationError(GLOBAL_OR_LOCAL)
+        if not self.is_global and self.url is None:
+            raise ValidationError(WHERE_REQUIRED)
 
     def match(self, url):
         """

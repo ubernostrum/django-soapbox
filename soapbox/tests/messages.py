@@ -1,6 +1,8 @@
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 
 from ..models import Message, MessageQuerySet
+from ..models import GLOBAL_OR_LOCAL, WHERE_REQUIRED
 
 
 class MessageTests(TestCase):
@@ -111,6 +113,35 @@ class MessageTests(TestCase):
         self.assertTrue(2 in result_ids)
         self.assertTrue(3 in result_ids)
         self.assertTrue(7 in result_ids)
+
+    def test_global_or_local(self):
+        """
+        Message instances can be global, or appear on selected pages,
+        but not both.
+
+        """
+        m = Message(
+            message="Invalid message that's both global and local.",
+            is_global=True,
+            is_active=True,
+            url="/foo/"
+        )
+        with self.assertRaises(ValidationError, msg=GLOBAL_OR_LOCAL):
+            m.clean()
+
+    def test_where_required(self):
+        """
+        A Message instance must either be global or specify a URL
+        prefix to match.
+
+        """
+        m = Message(
+            message="Invalid message that's neither global nor local.",
+            is_global=False,
+            is_active=True
+        )
+        with self.assertRaises(ValidationError, msg=WHERE_REQUIRED):
+            m.clean()
 
 
 class ContextProcessorTests(TestCase):
