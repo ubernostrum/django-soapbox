@@ -14,6 +14,9 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='message',
             name='is_global',
-            field=models.BooleanField(default=False, help_text=b'If checked, this message will display on all pages.'),
+            field=models.BooleanField(
+                default=False,
+                help_text=(b'If checked, this message will '
+                           b'display on all pages.')),
         ),
     ]
