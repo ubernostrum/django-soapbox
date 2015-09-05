@@ -1,4 +1,5 @@
 *.pyc
-*.pyo
-MANIFEST
-dist/*
+__pycache__
+*.egg-info
+docs/_build/
+.coverage
