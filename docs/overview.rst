@@ -75,6 +75,23 @@ Provided models
        instances which match ``url``.
 
 
+Validation requirements
+-----------------------
+
+While ``Message`` instances are relatively freeform, there are two
+requirements you must abide by; failure to do so will result in
+validation errors being raised when trying to save the ``Message``:
+
+1. Each ``Message`` must either have :attr:`~Message.is_global` set to
+   ``True``, or specify some URL prefix to match in
+   :attr:`~Message.url`.
+
+2. A ``Message`` cannot have both :attr:`~Message.is_global` set to
+   ``True`` and simultaneously have a URL prefix to match specified in
+   :attr:`~Message.url` (in other words, a ``Message`` can be global,
+   or "local" to some URL prefix, but never both at the same time).
+
+
 Message URL matching
 --------------------
 
