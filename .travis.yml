@@ -8,7 +8,11 @@ env:
  - DJANGO_VERSION=1.7.10
  - DJANGO_VERSION=1.8.4
 install:
- - pip install coverage
+ - pip install coverage>=4.0
+ - pip install flake8
  - pip install -q Django==$DJANGO_VERSION
-script: coverage run setup.py test
-after_success: coverage report
+script:
+ - coverage run setup.py test
+ - coverage report -m
+ - flake8 soapbox
+
