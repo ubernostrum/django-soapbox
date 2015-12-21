@@ -1,4 +1,5 @@
 from django.core.exceptions import ValidationError
+from django.core.validators import EMPTY_VALUES
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.safestring import mark_safe
@@ -74,9 +75,9 @@ class Message(models.Model):
         return mark_safe(self.message)
 
     def clean(self):
-        if self.is_global and self.url is not None:
+        if self.is_global and self.url not in EMPTY_VALUES:
             raise ValidationError(GLOBAL_OR_LOCAL)
-        if not self.is_global and self.url is None:
+        if not self.is_global and self.url in EMPTY_VALUES:
             raise ValidationError(WHERE_REQUIRED)
 
     def match(self, url):
