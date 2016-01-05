@@ -129,6 +129,14 @@ class MessageTests(TestCase):
         with self.assertRaises(ValidationError, msg=GLOBAL_OR_LOCAL):
             m.clean()
 
+        m = Message(
+            message="Valid message that's both global and has an empty URL.",
+            is_global=True,
+            is_active=True,
+            url=""
+        )
+        m.clean()
+
     def test_where_required(self):
         """
         A Message instance must either be global or specify a URL
