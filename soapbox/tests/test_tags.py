@@ -77,6 +77,4 @@ class TagTests(TestCase):
         """
         r = self.client.get('/bad-url-var/')
         self.assertEqual(r.status_code, 200)
-        self.assertTrue(
-            'soapbox_messages' not in r.context
-        )
+        self.assertEqual([], r.context['soapbox_messages'])
