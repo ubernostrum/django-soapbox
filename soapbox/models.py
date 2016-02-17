@@ -39,11 +39,10 @@ class MessageManager(models.Manager):
         URL.
 
         """
-        results = set()
-        for message in self.active():
-            if message.is_global or message.match(url):
-                results.add(message)
-        return list(results)
+        return list({
+            message for message in self.active() if
+            message.is_global or message.match(url)
+        })
 
 
 @python_2_unicode_compatible
