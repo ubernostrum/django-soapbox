@@ -96,9 +96,9 @@ class MessageTests(TestCase):
         """
         results = Message.objects.match('/bar/')
         self.assertEqual(len(results), 2)
-        result_ids = [m.id for m in results]
-        self.assertTrue(1 in result_ids)
-        self.assertTrue(4 in result_ids)
+        self.assertEqual(
+            {1, 4}, {m.id for m in results}
+        )
 
     def test_match_partial(self):
         """
@@ -108,11 +108,9 @@ class MessageTests(TestCase):
         """
         results = Message.objects.match('/foo/bar/')
         self.assertEqual(len(results), 4)
-        result_ids = [m.id for m in results]
-        self.assertTrue(1 in result_ids)
-        self.assertTrue(2 in result_ids)
-        self.assertTrue(3 in result_ids)
-        self.assertTrue(7 in result_ids)
+        self.assertEqual(
+            {1, 2, 3, 7}, {m.id for m in results}
+        )
 
     def test_global_or_local(self):
         """
@@ -177,9 +175,7 @@ class ContextProcessorTests(TestCase):
             self.assertTrue('soapbox_messages' in r.context)
             self.assertEqual(
                 len(r.context['soapbox_messages']), 4)
-            result_ids = [m.id for m in
-                          r.context['soapbox_messages']]
-            self.assertTrue(1 in result_ids)
-            self.assertTrue(2 in result_ids)
-            self.assertTrue(3 in result_ids)
-            self.assertTrue(7 in result_ids)
+            self.assertEqual(
+                {1, 2, 3, 7},
+                {m.id for m in r.context['soapbox_messages']}
+            )
