@@ -60,10 +60,7 @@ class MessageTests(TestCase):
         correct count.
 
         """
-        self.assertEqual(
-            MessageQuerySet(Message).active().count(),
-            5
-        )
+        self.assertEqual(5, MessageQuerySet(Message).active().count())
 
     def test_active_manager(self):
         """
@@ -71,10 +68,7 @@ class MessageTests(TestCase):
         passes through to MessageQuerySet.
 
         """
-        self.assertEqual(
-            Message.objects.active().count(),
-            5
-        )
+        self.assertEqual(Message.objects.active().count(), 5)
 
     def test_match_global(self):
         """
