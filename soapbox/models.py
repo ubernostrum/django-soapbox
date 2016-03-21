@@ -5,10 +5,10 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.utils.safestring import mark_safe
 
 
-GLOBAL_OR_LOCAL = ("A Message can be global, or can appear on only "
-                   "some pages, but not both.")
-WHERE_REQUIRED = ("A Message must either be global, or specify a "
-                  "URL prefix it will match.")
+GLOBAL_OR_LOCAL = (u"A Message can be global, or can appear on only "
+                   u"some pages, but not both.")
+WHERE_REQUIRED = (u"A Message must either be global, or specify a "
+                  u"URL prefix it will match.")
 
 
 class MessageQuerySet(models.QuerySet):
@@ -54,15 +54,15 @@ class Message(models.Model):
     message = models.TextField()
     is_global = models.BooleanField(
         default=False,
-        help_text="If checked, this message will display on all pages."
+        help_text=u"If checked, this message will display on all pages."
     )
     is_active = models.BooleanField(
         default=True,
-        help_text="Only active messages will be displayed."
+        help_text=u"Only active messages will be displayed."
     )
     url = models.CharField(
         "URL", max_length=255, blank=True, null=True,
-        help_text="Message will be displayed on any URL which matches this."
+        help_text=u"Message will be displayed on any URL which matches this."
     )
 
     objects = MessageManager()
