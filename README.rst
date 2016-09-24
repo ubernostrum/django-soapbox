@@ -9,4 +9,4 @@ sites. Simply install, begin adding messages in the admin, and then
 use the provided template tag library to retrieve them.
 
 Full documentation is included and `available online
-<http://django-soapbox.readthedocs.org/>`_.
+<https://django-soapbox.readthedocs.io/>`_.
