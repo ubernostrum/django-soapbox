@@ -133,8 +133,10 @@ One is a context processor, which will add a variable
 ``soapbox_messages`` to the context of any template rendered with a
 ``RequestContext`` (required in order to have access to the request
 path to determine the URL). To enable it, simply add
-``soapbox.context_processors.soapbox_messages`` to your
-``TEMPLATE_CONTEXT_PROCESSORS`` setting.
+``soapbox.context_processors.soapbox_messages`` to the context
+processors enabled on your site. See `the Django template options
+documentation
+<https://docs.djangoproject.com/en/1.10/topics/templates/#django.template.backends.django.DjangoTemplates>`_ for notes on how to do this.
 
 If you prefer to have more fine-grained control of where messages will
 be retrieved and displayed, django-soapbox provides a template tag,
@@ -150,8 +152,9 @@ To use the tag, first add ``{% load soapbox %}`` to the template to
 load the django-soapbox template tag library, then call the
 ``get_messages_for_page`` tag, passing a URL -- either a string, or a
 template variable which the tag will resolve -- and the name of the
-context variable you'd like the message to be placed into. For
-example:
+context variable you'd like the message to be placed into. For example
+(presuming you have a context processor enabled which exposes the
+current HTTP request to your template):
 
 .. code-block:: django
 

@@ -4,7 +4,7 @@ from setuptools import setup
 
 
 setup(name='django-soapbox',
-      version='1.3',
+      version='1.4',
       zip_safe=False,  # eggs are the devil.
       description=("Site-wide and page-specific announcements/messages for "
                    "Django sites"),
@@ -23,6 +23,7 @@ setup(name='django-soapbox',
                    'Framework :: Django',
                    'Framework :: Django :: 1.8',
                    'Framework :: Django :: 1.9',
+                   'Framework :: Django :: 1.10',
                    'Intended Audience :: Developers',
                    'License :: OSI Approved :: BSD License',
                    'Operating System :: OS Independent',
