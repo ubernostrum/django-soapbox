@@ -18,7 +18,7 @@ sys.path.insert(0, APP_DIR)
 
 # Minimum settings required for the app's tests.
 SETTINGS_DICT = {
-    'INSTALLED_APPS': ('soapbox',),
+    'INSTALLED_APPS': ('soapbox', 'django.contrib.contenttypes'),
     'ROOT_URLCONF': 'soapbox.tests.urls',
     'DATABASES': {
         'default': {
@@ -30,12 +30,21 @@ SETTINGS_DICT = {
         'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
     ),
-    'TEMPLATE_LOADERS': (
-        'django.template.loaders.app_directories.Loader',
-    ),
-    'TEMPLATE_CONTEXT_PROCESSORS': (
-        'django.core.context_processors.request',
-    ),
+    'TEMPLATES': [{
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(APP_DIR, 'tests/templates')],
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.request',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'soapbox.context_processors.soapbox_messages',
+            ],
+        },
+    }],
 }
 
 
