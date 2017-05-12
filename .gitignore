@@ -2,5 +2,7 @@
 __pycache__
 *.egg-info
 docs/_build/
-dist/
 .coverage
+dist/
+.python-version
+.tox/
