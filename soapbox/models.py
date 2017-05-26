@@ -1,3 +1,5 @@
+import re
+
 from django.core.exceptions import ValidationError
 from django.core.validators import EMPTY_VALUES
 from django.db import models
@@ -60,6 +62,11 @@ class Message(models.Model):
         default=True,
         help_text=u"Only active messages will be displayed."
     )
+    is_regex = models.BooleanField(
+        default=False,
+        help_text=u"If checked, the URL field will be treated as a regular "
+                  u"expression while matching."
+    )
     url = models.CharField(
         "URL", max_length=255, blank=True, null=True,
         help_text=u"Message will be displayed on any URL which matches this."
@@ -91,15 +98,18 @@ class Message(models.Model):
         if self.is_global:
             return True
 
-        # For easy comparison, we strip leading and trailing slashes,
-        # and then split both self.url and the supplied URL on
-        # slashes, to get two lists of path components we can compare.
-        self_bits = self.url.strip('/').split('/')
-        url_bits = url.strip('/').split('/')
+        if self.is_regex:
+            return bool(re.match(self.url, url))
+        else:
+            # For easy comparison, we strip leading and trailing slashes,
+            # and then split both self.url and the supplied URL on
+            # slashes, to get two lists of path components we can compare.
+            self_bits = self.url.strip('/').split('/')
+            url_bits = url.strip('/').split('/')
 
-        # If self.url produced a longer list of path components than
-        # the supplied URL, it can't be a match.
-        if len(self_bits) > len(url_bits):
-            return False
+            # If self.url produced a longer list of path components than
+            # the supplied URL, it can't be a match.
+            if len(self_bits) > len(url_bits):
+                return False
 
-        return self_bits == url_bits[:len(self_bits)]
+            return self_bits == url_bits[:len(self_bits)]
