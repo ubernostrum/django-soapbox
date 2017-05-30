@@ -60,7 +60,7 @@ class MessageTests(TestCase):
         correct count.
 
         """
-        self.assertEqual(5, MessageQuerySet(Message).active().count())
+        self.assertEqual(7, MessageQuerySet(Message).active().count())
 
     def test_active_manager(self):
         """
@@ -68,7 +68,7 @@ class MessageTests(TestCase):
         passes through to MessageQuerySet.
 
         """
-        self.assertEqual(Message.objects.active().count(), 5)
+        self.assertEqual(Message.objects.active().count(), 7)
 
     def test_match_global(self):
         """
@@ -89,9 +89,9 @@ class MessageTests(TestCase):
 
         """
         results = Message.objects.match('/bar/')
-        self.assertEqual(len(results), 2)
+        self.assertEqual(len(results), 3)
         self.assertEqual(
-            {1, 4}, {m.id for m in results}
+            {1, 4, 8}, {m.id for m in results}
         )
 
     def test_match_partial(self):
@@ -101,9 +101,9 @@ class MessageTests(TestCase):
 
         """
         results = Message.objects.match('/foo/bar/')
-        self.assertEqual(len(results), 4)
+        self.assertEqual(len(results), 6)
         self.assertEqual(
-            {1, 2, 3, 7}, {m.id for m in results}
+            {1, 2, 3, 7, 8, 9}, {m.id for m in results}
         )
 
     def test_global_or_local(self):
@@ -143,6 +143,40 @@ class MessageTests(TestCase):
         with self.assertRaises(ValidationError, msg=WHERE_REQUIRED):
             m.clean()
 
+    def test_regex_matching(self):
+        """
+        Test that a Message matches when its URL is a regex that matches the
+        supplied URL.
+
+        """
+        message = Message.objects.get(pk=8)
+        self.assertTrue(
+            message.match('/foo/bar/')
+        )
+        self.assertTrue(
+            message.match('/bar/')
+        )
+        self.assertFalse(
+            message.match('/foo/')
+        )
+
+    def test_regex_prefix_matching(self):
+        """
+        Test that a Message matches when its URL is a regex that matches the
+        start of the supplied URL.
+
+        """
+        message = Message.objects.get(pk=9)
+        self.assertTrue(
+            message.match('/foo/bar/')
+        )
+        self.assertTrue(
+            message.match('/foo/')
+        )
+        self.assertFalse(
+            message.match('/bar/')
+        )
+
 
 class ContextProcessorTests(TestCase):
     """
@@ -168,8 +202,8 @@ class ContextProcessorTests(TestCase):
             self.assertEqual(r.status_code, 200)
             self.assertTrue('soapbox_messages' in r.context)
             self.assertEqual(
-                len(r.context['soapbox_messages']), 4)
+                len(r.context['soapbox_messages']), 6)
             self.assertEqual(
-                {1, 2, 3, 7},
+                {1, 2, 3, 7, 8, 9},
                 {m.id for m in r.context['soapbox_messages']}
             )

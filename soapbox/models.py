@@ -65,7 +65,8 @@ class Message(models.Model):
     is_regex = models.BooleanField(
         default=False,
         help_text=u"If checked, the URL field will be treated as a regular "
-                  u"expression while matching."
+                  u"expression while matching. Regular expression must match "
+                  u"on the entire request URL starting from the beginning."
     )
     url = models.CharField(
         "URL", max_length=255, blank=True, null=True,

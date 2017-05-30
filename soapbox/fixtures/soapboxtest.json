@@ -62,5 +62,25 @@
 	     "is_global": false,
 	     "is_active": true
     }
+  },
+  {"pk": 8,
+   "model": "soapbox.message",
+   "fields": {
+   	     "url": ".*bar.*",
+	     "message": "This is a message which appears on /foo/bar/ and /bar/ by matching a regex.",
+	     "is_global": false,
+	     "is_active": true,
+         "is_regex": true
+    }
+  },
+  {"pk": 9,
+   "model": "soapbox.message",
+   "fields": {
+   	     "url": "/foo/.*",
+	     "message": "This is a message which appears on /foo/bar/ and /foo/ by matching a regex.",
+	     "is_global": false,
+	     "is_active": true,
+         "is_regex": true
+    }
   }
 ]

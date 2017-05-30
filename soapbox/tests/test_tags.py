@@ -27,7 +27,7 @@ class TagTests(TestCase):
         r = self.client.get('/foo/')
         self.assertEqual(r.status_code, 200)
         self.assertEqual(
-            len(r.context['soapbox_messages']), 2)
+            len(r.context['soapbox_messages']), 3)
         self.assertContains(
             r, "This is a global message.")
         self.assertContains(
@@ -42,7 +42,7 @@ class TagTests(TestCase):
         r = self.client.get('/foo/bar/')
         self.assertEqual(r.status_code, 200)
         self.assertEqual(
-            len(r.context['soapbox_messages']), 4)
+            len(r.context['soapbox_messages']), 6)
         self.assertContains(
             r, "This is a global message.")
         self.assertContains(

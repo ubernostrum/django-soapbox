@@ -15,6 +15,10 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='message',
             name='is_regex',
-            field=models.BooleanField(default=False, help_text='If checked, the URL field will be treated as a regular expression while matching.'),
+            field=models.BooleanField(
+                default=False,
+                help_text='If checked, the URL field will be treated as a '
+                          'regular expression while matching.'
+            ),
         ),
     ]

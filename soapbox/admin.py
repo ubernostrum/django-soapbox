@@ -14,7 +14,8 @@ class MessageAdmin(admin.ModelAdmin):
             'fields': ('is_active', 'is_global', 'is_regex'),
         }),
     )
-    list_display = ('message_display', 'is_global', 'is_active', 'is_regex', 'url')
+    list_display = ('message_display', 'is_global', 'is_active', 'is_regex',
+                    'url')
     list_filter = ('is_global', 'is_active')
 
     def message_display(self, obj):
