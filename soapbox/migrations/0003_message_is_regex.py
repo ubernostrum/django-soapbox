@@ -18,7 +18,9 @@ class Migration(migrations.Migration):
             field=models.BooleanField(
                 default=False,
                 help_text='If checked, the URL field will be treated as a '
-                          'regular expression while matching.'
+                          'regular expression while matching. Regular '
+                          'expression must match on the entire request URL '
+                          'starting from the beginning.'
             ),
         ),
     ]
