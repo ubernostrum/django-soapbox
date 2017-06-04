@@ -3,12 +3,11 @@
 Usage overview
 ==============
 
-The goal of django-soapbox is to provide a simple way to display
-persistent messages on either all pages, specific pages, or a subset
-of pages on a Django-powered site. To begin using django-soapbox,
-simply :ref:`install it <install>`, then add ``soapbox`` to your
-``INSTALLED_APPS`` setting and run ``manage.py migrate`` to install
-the :class:`Message` model.
+The goal of django-soapbox is to provide a way to display persistent
+messages on either all pages, specific pages, or a subset of pages on
+a Django-powered site. To begin using django-soapbox, :ref:`install it
+<install>`, then add ``soapbox`` to your ``INSTALLED_APPS`` setting
+and run ``manage.py migrate`` to install the :class:`Message` model.
 
 You can then begin creating :class:`Message` instances through the
 admin interface, indicating which URLs you'd like them to appear on.
@@ -132,7 +131,7 @@ displaying messages in templates.
 One is a context processor, which will add a variable
 ``soapbox_messages`` to the context of any template rendered with a
 ``RequestContext`` (required in order to have access to the request
-path to determine the URL). To enable it, simply add
+path to determine the URL). To enable it, add
 ``soapbox.context_processors.soapbox_messages`` to the context
 processors enabled on your site. See `the Django template options
 documentation
