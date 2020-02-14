@@ -10,22 +10,14 @@ information on obtaining and installing Django, consult the `Django
 download page <https://www.djangoproject.com/download/>`_, which
 offers convenient packaged downloads and installation instructions.
 
-The |version| release of django-soapbox supports Django 1.8,
-1.10, and 1.11 on the following Python versions (matching the versions
-supported by Django itself):
+The |version| release of django-soapbox is supports Django 1.11, 2.2, and 3.0 on
+supported version of Python 3.
 
-* Django 1.8 supports Python 2.7, 3.3, 3.4, and 3.5.
+* Django 1.11 supports Python 3.5, 3.6, 3.7, and 3.8
 
-* Django 1.10 supports Python 2.7, 3.4, and 3.5.
+* Django 2.2 supports Python 3.5, 3.6, 3.7, and 3.8
 
-* Django 1.11 supports Python 2.7, 3.4, 3.5, and 3.6
-
-.. important:: **Python 3.2**
-
-   Although Django 1.8 supported Python 3.2 at the time of its
-   release, the Python 3.2 series has reached end-of-life, and as a
-   result support for Python 3.2 has been dropped from
-   django-soapbox.
+* Django 3.0 supports Python 3.6, 3.7, and 3.8
 
 
 Normal installation
