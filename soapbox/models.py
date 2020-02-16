@@ -1,7 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.core.validators import EMPTY_VALUES
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.safestring import mark_safe
 
 
@@ -45,7 +44,6 @@ class MessageManager(models.Manager):
         })
 
 
-@python_2_unicode_compatible
 class Message(models.Model):
     """
     A message which may be displayed on some or all pages of a site.
