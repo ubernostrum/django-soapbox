@@ -94,7 +94,7 @@ validation errors being raised when trying to save the ``Message``:
 Message URL matching
 --------------------
 
-The message-retrieveal helpers provided in django-soapbox will only
+The message-retrieval helpers provided in django-soapbox will only
 retrieve messages which are active and which match a particular URL
 you pass to them; typically, this will be the URL of the current
 request. The matching process is case-sensitive and uses the following
