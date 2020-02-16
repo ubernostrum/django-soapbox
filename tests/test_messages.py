@@ -1,8 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 
-from ..models import Message, MessageQuerySet
-from ..models import GLOBAL_OR_LOCAL, WHERE_REQUIRED
+from soapbox.models import GLOBAL_OR_LOCAL, WHERE_REQUIRED, Message, MessageQuerySet
 
 
 class MessageTests(TestCase):
@@ -10,7 +9,8 @@ class MessageTests(TestCase):
     Test the methods and custom manager of the Message model.
 
     """
-    fixtures = ['soapboxtest.json']
+
+    fixtures = ["soapboxtest.json"]
 
     def test_global_instance(self):
         """
@@ -19,15 +19,9 @@ class MessageTests(TestCase):
 
         """
         message = Message.objects.get(pk=1)
-        self.assertTrue(
-            message.match('/')
-        )
-        self.assertTrue(
-            message.match('/foo/')
-        )
-        self.assertTrue(
-            message.match('/foo/bar/')
-        )
+        self.assertTrue(message.match("/"))
+        self.assertTrue(message.match("/foo/"))
+        self.assertTrue(message.match("/foo/bar/"))
 
     def test_non_global_instance(self):
         """
@@ -36,12 +30,8 @@ class MessageTests(TestCase):
 
         """
         message = Message.objects.get(pk=2)
-        self.assertFalse(
-            message.match('/')
-        )
-        self.assertTrue(
-            message.match('/foo/')
-        )
+        self.assertFalse(message.match("/"))
+        self.assertTrue(message.match("/foo/"))
 
     def test_prefix_matching(self):
         """
@@ -50,9 +40,7 @@ class MessageTests(TestCase):
 
         """
         message = Message.objects.get(pk=2)
-        self.assertTrue(
-            message.match('/foo/bar/')
-        )
+        self.assertTrue(message.match("/foo/bar/"))
 
     def test_active_queryset(self):
         """
@@ -76,7 +64,7 @@ class MessageTests(TestCase):
         retrieves global Messages.
 
         """
-        results = Message.objects.match('/')
+        results = Message.objects.match("/")
         self.assertEqual(len(results), 1)
         result_ids = [m.id for m in results]
         self.assertEqual([1], result_ids)
@@ -88,11 +76,9 @@ class MessageTests(TestCase):
         present.
 
         """
-        results = Message.objects.match('/bar/')
+        results = Message.objects.match("/bar/")
         self.assertEqual(len(results), 2)
-        self.assertEqual(
-            {1, 4}, {m.id for m in results}
-        )
+        self.assertEqual({1, 4}, {m.id for m in results})
 
     def test_match_partial(self):
         """
@@ -100,11 +86,9 @@ class MessageTests(TestCase):
         retrieves Messages which match a prefix of the URL.
 
         """
-        results = Message.objects.match('/foo/bar/')
+        results = Message.objects.match("/foo/bar/")
         self.assertEqual(len(results), 4)
-        self.assertEqual(
-            {1, 2, 3, 7}, {m.id for m in results}
-        )
+        self.assertEqual({1, 2, 3, 7}, {m.id for m in results})
 
     def test_global_or_local(self):
         """
@@ -116,7 +100,7 @@ class MessageTests(TestCase):
             message="Invalid message that's both global and local.",
             is_global=True,
             is_active=True,
-            url="/foo/"
+            url="/foo/",
         )
         with self.assertRaises(ValidationError, msg=GLOBAL_OR_LOCAL):
             m.clean()
@@ -125,7 +109,7 @@ class MessageTests(TestCase):
             message="Valid message that's both global and has an empty URL.",
             is_global=True,
             is_active=True,
-            url=""
+            url="",
         )
         m.clean()
 
@@ -138,7 +122,7 @@ class MessageTests(TestCase):
         m = Message(
             message="Invalid message that's neither global nor local.",
             is_global=False,
-            is_active=True
+            is_active=True,
         )
         with self.assertRaises(ValidationError, msg=WHERE_REQUIRED):
             m.clean()
@@ -150,7 +134,8 @@ class ContextProcessorTests(TestCase):
     template context.
 
     """
-    fixtures = ['soapboxtest.json']
+
+    fixtures = ["soapboxtest.json"]
 
     def test_context_processor(self):
         """
@@ -162,14 +147,13 @@ class ContextProcessorTests(TestCase):
         # template tag in other tests.
         with self.modify_settings(
             TEMPLATE_CONTEXT_PROCESSORS={
-                'append': 'soapbox.context_processors.soapbox_messages',
-                }):
-            r = self.client.get('/foo/bar/baz/')
+                "append": "soapbox.context_processors.soapbox_messages",
+            }
+        ):
+            r = self.client.get("/foo/bar/baz/")
             self.assertEqual(r.status_code, 200)
-            self.assertTrue('soapbox_messages' in r.context)
+            self.assertTrue("soapbox_messages" in r.context)
+            self.assertEqual(len(r.context["soapbox_messages"]), 4)
             self.assertEqual(
-                len(r.context['soapbox_messages']), 4)
-            self.assertEqual(
-                {1, 2, 3, 7},
-                {m.id for m in r.context['soapbox_messages']}
+                {1, 2, 3, 7}, {m.id for m in r.context["soapbox_messages"]}
             )
