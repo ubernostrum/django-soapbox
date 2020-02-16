@@ -16,7 +16,17 @@ APP_DIR = os.path.abspath(os.path.dirname(__file__))
 
 # Minimum settings required for the app's tests.
 SETTINGS_DICT = {
-    "INSTALLED_APPS": ("soapbox", "django.contrib.contenttypes"),
+    "BASE_DIR": APP_DIR,
+    "INSTALLED_APPS": (
+        "django.contrib.admin",
+        "django.contrib.auth",
+        "django.contrib.contenttypes",
+        "django.contrib.messages",
+        "django.contrib.sessions",
+        "django.contrib.sites",
+        "soapbox",
+        "tests",
+    ),
     "ROOT_URLCONF": "tests.urls",
     "DATABASES": {
         "default": {
@@ -26,7 +36,10 @@ SETTINGS_DICT = {
     },
     "MIDDLEWARE": (
         "django.middleware.common.CommonMiddleware",
+        "django.contrib.sessions.middleware.SessionMiddleware",
         "django.middleware.csrf.CsrfViewMiddleware",
+        "django.contrib.auth.middleware.AuthenticationMiddleware",
+        "django.contrib.messages.middleware.MessageMiddleware",
     ),
     "TEMPLATES": [
         {
@@ -34,6 +47,8 @@ SETTINGS_DICT = {
             "DIRS": [os.path.join(APP_DIR, "tests/templates")],
             "OPTIONS": {
                 "context_processors": [
+                    "django.contrib.auth.context_processors.auth",
+                    "django.contrib.messages.context_processors.messages",
                     "django.template.context_processors.debug",
                     "django.template.context_processors.i18n",
                     "django.template.context_processors.media",
