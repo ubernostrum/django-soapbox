@@ -82,7 +82,7 @@ def run_tests():
     TestRunner = get_runner(settings)
 
     # And then we run tests and return the results.
-    test_runner = TestRunner(verbosity=1, interactive=True)
+    test_runner = TestRunner(verbosity=2, interactive=True)
     failures = test_runner.run_tests(["tests"])
     sys.exit(bool(failures))
 

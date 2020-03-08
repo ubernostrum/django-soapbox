@@ -16,7 +16,7 @@ admin interface, indicating which URLs you'd like them to appear on.
 Provided models
 ---------------
 
-..currentmodule:: soapbox.models
+.. currentmodule:: soapbox.models
 
 .. class:: Message
 
