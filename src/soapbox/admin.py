@@ -7,8 +7,18 @@ from .models import Message
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
     fieldsets = (
-        (None, {"fields": ("url", "message"),}),
-        ("Options", {"fields": ("is_active", "is_global"),}),
+        (
+            None,
+            {
+                "fields": ("url", "message"),
+            },
+        ),
+        (
+            "Options",
+            {
+                "fields": ("is_active", "is_global"),
+            },
+        ),
     )
     list_display = ("message_display", "is_global", "is_active", "url")
     list_filter = ("is_global", "is_active")

@@ -50,6 +50,8 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={"ordering": ["-id"],},
+            options={
+                "ordering": ["-id"],
+            },
         ),
     ]

@@ -8,7 +8,8 @@ urlpatterns = [
     path("", TemplateView.as_view(template_name="soapboxtest/test_success.html")),
     path("foo/", TemplateView.as_view(template_name="soapboxtest/test_success.html")),
     path(
-        "foo/bar/", TemplateView.as_view(template_name="soapboxtest/test_success.html"),
+        "foo/bar/",
+        TemplateView.as_view(template_name="soapboxtest/test_success.html"),
     ),
     path(
         "foo/bar/baz/",
