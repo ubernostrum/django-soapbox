@@ -1,7 +1,8 @@
 .. -*-restructuredtext-*-
 
-.. image:: https://travis-ci.org/ubernostrum/django-soapbox.svg?branch=master
-    :target: https://travis-ci.org/ubernostrum/django-soapbox
+.. image:: https://github.com/ubernostrum/django-soapbox/workflows/CI/badge.svg
+    :alt: CI status image
+    :target: https://github.com/ubernostrum/django-soapbox/actions?query=workflow%3ACI
 
 django-soapbox provides site-wide and page-specific
 announcements/messages for `Django <https://www.djangoproject.com>`_

@@ -2,7 +2,6 @@ from django import template
 
 from ..models import Message
 
-
 register = template.Library()
 
 

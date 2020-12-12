@@ -3,7 +3,6 @@ from django.core.validators import EMPTY_VALUES
 from django.db import models
 from django.utils.safestring import mark_safe
 
-
 GLOBAL_OR_LOCAL = (
     "A Message can be global, or can appear on only some pages, but not both."
 )
