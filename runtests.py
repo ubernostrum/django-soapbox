@@ -11,8 +11,7 @@ import os
 import sys
 
 from django.core.management.utils import get_random_secret_key
-chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
-SECRET_KEY = get_random_secret_key(50, chars)
+SECRET_KEY = get_random_secret_key()
 
 APP_DIR = os.path.abspath(os.path.dirname(__file__))
 
