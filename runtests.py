@@ -7,9 +7,10 @@ different settings and/or templates to run their tests.
 
 """
 
+from django.core.management.utils import get_random_secret_key
+
 import os
 import sys
-
 
 APP_DIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -17,6 +18,7 @@ APP_DIR = os.path.abspath(os.path.dirname(__file__))
 # Minimum settings required for the app's tests.
 SETTINGS_DICT = {
     "BASE_DIR": APP_DIR,
+    "SECRET_KEY": get_random_secret_key(),
     "INSTALLED_APPS": (
         "django.contrib.admin",
         "django.contrib.auth",
