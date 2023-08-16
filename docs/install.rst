@@ -4,13 +4,14 @@
 Installation guide
 ==================
 
-The |release| release of django-soapbox supports Django 2.2 and
-3.0 on the following Python versions:
+The |release| release of django-soapbox supports Django 3.2, 4.1 and
+4.2 on the following Python versions:
 
-* Django 2.2 supports Python 3.5, 3.6, 3.7, and 3.8.
+* Django 3.2 supports Python 3.8, 3.9, and 3.10.
 
-* Django 3.0 supports Python 3.6, 3.7, and 3.8.
+* Django 4.1 supports Python 3.8, 3.9, 3.10 and 3.11.
 
+* Django 4.2 supports Python 3.8, 3.9, 3.10 and 3.11.
 
 Normal installation
 -------------------

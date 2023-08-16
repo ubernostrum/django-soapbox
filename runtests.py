@@ -60,6 +60,8 @@ SETTINGS_DICT = {
             },
         }
     ],
+    "SECRET_KEY": "secret",
+    "DEFAULT_AUTO_FIELD": "django.db.models.BigAutoField",
 }
 
 
