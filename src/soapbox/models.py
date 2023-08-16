@@ -58,17 +58,17 @@ class Message(models.Model):
 
     message = models.TextField()
     is_global = models.BooleanField(
-        default=False, help_text=u"If checked, this message will display on all pages."
+        default=False, help_text="If checked, this message will display on all pages."
     )
     is_active = models.BooleanField(
-        default=True, help_text=u"Only active messages will be displayed."
+        default=True, help_text="Only active messages will be displayed."
     )
     url = models.CharField(
         "URL",
         max_length=255,
         blank=True,
         null=True,
-        help_text=u"Message will be displayed on any URL which matches this.",
+        help_text="Message will be displayed on any URL which matches this.",
     )
 
     objects = MessageManager()
